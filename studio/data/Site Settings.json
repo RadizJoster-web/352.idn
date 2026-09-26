@@ -1,0 +1,20 @@
+[
+  {
+    "_type": "siteSettings",
+    "title": "Portal Berita Utama",
+    "description": "Sumber informasi terpercaya seputar teknologi, bisnis, dan gaya hidup.",
+    "keywords": ["berita", "teknologi", "bisnis", "lifestyle"]
+  },
+  {
+    "_type": "siteSettings",
+    "title": "DevBlog Indonesia",
+    "description": "Blog seputar panduan pemograman, web development, dan ekosistem IT.",
+    "keywords": ["react", "typescript", "sanity", "web dev"]
+  },
+  {
+    "_type": "siteSettings",
+    "title": "Katalog Produk & Tren",
+    "description": "Tempat menemukan item terkini dan penawaran terbaik tahun ini.",
+    "keywords": ["trending", "promo", "katalog", "belanja"]
+  }
+]

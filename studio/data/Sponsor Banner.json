@@ -1,0 +1,23 @@
+[
+  {
+    "_type": "sponsorBanner",
+    "bannerName": "Promo Diskoni Laptop High-End",
+    "targetUrl": "https://example.com/promo-laptop",
+    "position": "header",
+    "isActive": true
+  },
+  {
+    "_type": "sponsorBanner",
+    "bannerName": "Diskon Hosting & Domain 50%",
+    "targetUrl": "https://example.com/promo-hosting",
+    "position": "sidebar",
+    "isActive": true
+  },
+  {
+    "_type": "sponsorBanner",
+    "bannerName": "Pendaftaran Bootcamp Web Dev Batch 12",
+    "targetUrl": "https://example.com/bootcamp-webdev",
+    "position": "footer",
+    "isActive": false
+  }
+]

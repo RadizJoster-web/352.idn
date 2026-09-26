@@ -1,0 +1,4 @@
+1. Ubah style warna fokus pada hitam dan putih
+2. Deploy cms
+3. daftar website ke search engine google
+4. atur agar setiap kali ada perubahan di cms maka vercel akan otomatis re build

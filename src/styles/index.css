@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,opsz,wght@9..144,9..144,300..600&family=Inter:wght@300;400;500;600&display=swap');
+@import 'tailwindcss';
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Fraunces', ui-serif, Georgia, serif;
+
+  --color-primary: var(--text-1);
+  --color-primary-hover: var(--text-2);
+  --color-primary-soft: var(--surface-2);
+
+  --color-background: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--bg-elevated);
+
+  --color-text: var(--text-1);
+  --color-text-secondary: var(--text-2);
+  --color-text-muted: var(--text-3);
+  --color-text-on-primary: var(--bg);
+
+  --color-border: var(--border);
+
+  --color-alert: #ef4444;
+  --color-alert-soft: #fef2f2;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+
+  --container-max: 1280px;
+
+  --shadow-card: 0 1px 2px rgb(15 23 42 / 0.05);
+  --shadow-elevated: 0 10px 30px rgb(15 23 42 / 0.08);
+}
+
+@layer base {
+  :root {
+    /* Light Mode */
+    --bg: #ffffff;
+    --bg-elevated: #f4f4f4;
+    --surface: #ebebeb;
+    --surface-2: #e0e0e0;
+    --text-1: #0a0a0a;
+    --text-2: #4d4d4d;
+    --text-3: #8a8a8a;
+    --border: #dcdcdc;
+  }
+
+  .dark {
+    /* Dark Mode */
+    --bg: #0a0a0a;
+    --bg-elevated: #131313;
+    --surface: #1c1c1c;
+    --surface-2: #262626;
+    --text-1: #f5f5f5;
+    --text-2: #b0b0b0;
+    --text-3: #6e6e6e;
+    --border: #2a2a2a;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    background-color: var(--color-background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  input[type='search']::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+  }
+}

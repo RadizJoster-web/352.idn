@@ -1,0 +1,23 @@
+[
+  {
+    "_type": "trendingItem",
+    "title": "Panduan Belajar React 19 & Next.js",
+    "slug": { "_type": "slug", "current": "panduan-belajar-react-19" },
+    "views": 15400,
+    "isFeatured": true
+  },
+  {
+    "_type": "trendingItem",
+    "title": "Rekomendasi Laptop Tipis untuk Developer 2026",
+    "slug": { "_type": "slug", "current": "rekomendasi-laptop-developer-2026" },
+    "views": 9820,
+    "isFeatured": true
+  },
+  {
+    "_type": "trendingItem",
+    "title": "Tips Mengatur Keuangan di Usia 20-an",
+    "slug": { "_type": "slug", "current": "tips-keuangan-usia-20an" },
+    "views": 7310,
+    "isFeatured": false
+  }
+]

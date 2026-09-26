@@ -1,0 +1,20 @@
+[
+  {
+    "_type": "category",
+    "title": "Teknologi",
+    "slug": { "_type": "slug", "current": "teknologi" },
+    "description": "Artikel dan berita seputar dunia gadget, software, dan inovasi tech terbaru."
+  },
+  {
+    "_type": "category",
+    "title": "Gaya Hidup",
+    "slug": { "_type": "slug", "current": "gaya-hidup" },
+    "description": "Tips kesehatan, travel, fashion, dan tren masa kini."
+  },
+  {
+    "_type": "category",
+    "title": "Bisnis & Finansial",
+    "slug": { "_type": "slug", "current": "bisnis-finansial" },
+    "description": "Ulasan pasar saham, investasi, startup, dan ekonomi makro."
+  }
+]
