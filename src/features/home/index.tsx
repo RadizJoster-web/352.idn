@@ -1,6 +1,6 @@
 import { useHomeArticles } from '../../hooks/useArticles';
 import { useMatches } from '../../hooks/useMatches';
-import LoadingSkeleton from '../../components/common/LoadingSkeleton';
+import PageHomeSkeleton from '../../components/common/skeleton/pages/PageHomeSkeleton';
 import ErrorState from '../../components/common/ErrorState';
 import HeroHeadline from './HeroHeadline';
 import HotArticles from './HotArticles';
@@ -12,7 +12,7 @@ export default function HomeFeature() {
   const { data, isLoading, error } = useHomeArticles();
   const { matches } = useMatches();
 
-  if (isLoading) return <LoadingSkeleton variant="hero" />;
+  if (isLoading) return <PageHomeSkeleton />;
   if (error)
     return (
       <ErrorState

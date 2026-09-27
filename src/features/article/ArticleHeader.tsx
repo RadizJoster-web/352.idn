@@ -1,12 +1,3 @@
-import {
-  FaInstagram,
-  FaFacebook,
-  FaYoutube,
-  FaTelegram,
-  FaWhatsappSquare,
-  FaExternalLinkAlt,
-} from 'react-icons/fa';
-import { FaSquareXTwitter } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 
 import type { ArticleDetail } from '../../types/article';
@@ -26,19 +17,8 @@ const truncateWords = (text: string, maxWords: number) => {
   return text;
 };
 
-const getSocialIcon = (platform: string) => {
-  const p = platform.toLowerCase();
-  console.log(p === 'instagram');
-  if (p === 'instagram') return <FaInstagram className="w-4 h-4" />;
-  if (p === 'facebook') return <FaFacebook className="w-4 h-4" />;
-  if (p === 'twitter') return <FaSquareXTwitter className="w-4 h-4" />;
-  if (p === 'youtube') return <FaYoutube className="w-4 h-4" />;
-  if (p === 'telegram') return <FaTelegram className="w-4 h-4" />;
-  if (p === 'whatsapp') return <FaWhatsappSquare className="w-4 h-4" />;
-  return <FaExternalLinkAlt className="w-4 h-4" />;
-};
-
 export default function ArticleHeader({ article }: ArticleHeaderProps) {
+  console.log(article);
   return (
     <header className="mb-6">
       <Breadcrumb
@@ -88,26 +68,6 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
             </time>
           </div>
         </div>
-
-        {/* Social Media Section (Right) */}
-        {article.author.socialLinks &&
-          article.author.socialLinks.length > 0 && (
-            <div className="flex items-center gap-2">
-              {article.author.socialLinks.map((link) => (
-                <a
-                  key={link.url}
-                  href={link.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-8 h-8 flex items-center justify-center rounded-full bg-surface text-text hover:bg-primary hover:text-white transition-colors"
-                  aria-label={link.platform}
-                  title={link.platform}
-                >
-                  {getSocialIcon(link.platform)}
-                </a>
-              ))}
-            </div>
-          )}
       </div>
     </header>
   );

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { fetchCategoryBySlug } from '../../queries/categoryQueries';
 import type { Category } from '../../types/category';
 import { useInfiniteArticles } from '../../hooks/useInfiniteArticles';
-import LoadingSkeleton from '../../components/common/LoadingSkeleton';
+import PageCategorySkeleton from '../../components/common/skeleton/pages/PageCategorySkeleton';
 import EmptyState from '../../components/common/EmptyState';
 import CategoryHeader from './CategoryHeader';
 import ArticleListItemComponent from '../../components/article/ArticleListItem';
@@ -24,8 +24,7 @@ export default function CategoryFeature() {
       .finally(() => setCatLoading(false));
   }, [slug]);
 
-  if (catLoading && loading)
-    return <LoadingSkeleton variant="card" count={3} />;
+  if (catLoading && loading) return <PageCategorySkeleton />;
   if (!catLoading && !category)
     return <EmptyState title="Kategori tidak ditemukan" showHomeLink />;
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useSearchArticles } from '../../hooks/useSearchArticles';
-import LoadingSkeleton from '../../components/common/LoadingSkeleton';
+import PageSearchSkeleton from '../../components/common/skeleton/pages/PageSearchSkeleton';
 import ErrorState from '../../components/common/ErrorState';
 import EmptyState from '../../components/common/EmptyState';
 import Pagination from '../../components/common/Pagination';
@@ -15,8 +15,12 @@ export default function SearchFeature() {
   const [page, setPage] = useState(1);
   const { articles, total, totalPages, isLoading, error } = useSearchArticles(
     query,
-    page
+    page,
   );
+
+  if (isLoading && articles.length === 0) {
+    return <PageSearchSkeleton />;
+  }
 
   return (
     <div className="mx-auto max-w-[var(--container-max)] px-4 py-8">
@@ -24,7 +28,7 @@ export default function SearchFeature() {
         {/* Left Column (Search Results) */}
         <div className="min-w-0 max-w-full lg:max-w-[760px] xl:max-w-[800px] mx-auto lg:mx-0">
           <SearchHeader query={query} total={total} />
-          {isLoading && <LoadingSkeleton variant="list" count={5} />}
+          {isLoading && <PageSearchSkeleton />}
           {error && <ErrorState message="Pencarian gagal." />}
           {!isLoading && !error && articles.length === 0 && query && (
             <EmptyState

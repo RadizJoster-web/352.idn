@@ -8,7 +8,7 @@ import {
 } from '../../queries/articleQueries';
 import { setSeoMeta, setJsonLd } from '../../lib/seo';
 import { urlFor } from '../../services/sanity/image';
-import LoadingSkeleton from '../../components/common/LoadingSkeleton';
+import PageArticleSkeleton from '../../components/common/skeleton/pages/PageArticleSkeleton';
 import ErrorState from '../../components/common/ErrorState';
 import SanityImage from '../../components/media/SanityImage';
 import ArticleHeader from './ArticleHeader';
@@ -77,7 +77,7 @@ export default function ArticleFeature() {
     };
   }, [slug]);
 
-  if (isLoading) return <LoadingSkeleton variant="body" />;
+  if (isLoading) return <PageArticleSkeleton />;
   if (error) return <ErrorState message="Gagal memuat artikel." />;
   if (!article) return <ErrorState message="Artikel tidak ditemukan." />;
 

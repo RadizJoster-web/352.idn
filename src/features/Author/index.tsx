@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useAuthor } from '../../hooks/useAuthor';
 import { useArticlesByAuthor } from '../../hooks/useArticlesByAuthor';
 
+import PageAuthorSkeleton from '../../components/common/skeleton/pages/PageAuthorSkeleton';
 import Header from './Header';
 import ArticleAuthor from './ArticleAuthor';
 
@@ -45,20 +46,7 @@ export default function AuthorProfile() {
 
   // 3. Layout Management: Loading & Error States
   if (isAuthorLoading) {
-    return (
-      <main className="mx-auto min-h-screen max-w-[var(--container-max)] px-4 py-12">
-        <div className="animate-pulse rounded-2xl border border-border bg-surface p-8">
-          <div className="flex flex-col items-center sm:flex-row sm:items-start gap-6">
-            <div className="h-24 w-24 rounded-full bg-border" />
-            <div className="flex-1 space-y-3 w-full">
-              <div className="h-8 w-48 rounded bg-border" />
-              <div className="h-4 w-24 rounded bg-border" />
-              <div className="h-16 w-full rounded bg-border mt-4" />
-            </div>
-          </div>
-        </div>
-      </main>
-    );
+    return <PageAuthorSkeleton />;
   }
 
   if (authorError || !author) {

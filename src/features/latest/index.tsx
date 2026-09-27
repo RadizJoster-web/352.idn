@@ -1,5 +1,5 @@
 import { useInfiniteArticles } from '../../hooks/useInfiniteArticles';
-import LoadingSkeleton from '../../components/common/LoadingSkeleton';
+import PageSimpleSkeleton from '../../components/common/skeleton/pages/PageSimpleSkeleton';
 import EmptyState from '../../components/common/EmptyState';
 import ArticleListItemComponent from '../../components/article/ArticleListItem';
 import { Sidebar } from '../../components/Sidebar';
@@ -7,8 +7,7 @@ import { Sidebar } from '../../components/Sidebar';
 export default function LatestFeature() {
   const { articles, loading, lastElementRef } = useInfiniteArticles(10);
 
-  if (articles.length === 0 && loading)
-    return <LoadingSkeleton variant="card" count={3} />;
+  if (articles.length === 0 && loading) return <PageSimpleSkeleton />;
   if (articles.length === 0 && !loading)
     return <EmptyState title="Artikel tidak ditemukan" showHomeLink />;
 
