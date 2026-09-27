@@ -1,0 +1,45 @@
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+[build.processing.images]
+  compress = true
+
+# Aktifkan Prerendering Netlify untuk SPA SEO
+[build.processing.prerender]
+  enabled = true
+
+# Netlify Functions
+[functions]
+  node_bundler = "esbuild"
+
+# Redirects untuk Sitemaps (ke Netlify Functions)
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/.netlify/functions/sitemap"
+  status = 200
+
+[[redirects]]
+  from = "/sitemap-news.xml"
+  to = "/.netlify/functions/sitemap-news"
+  status = 200
+
+# Redirect untuk SPA (React/Vite)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

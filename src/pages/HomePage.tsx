@@ -1,14 +1,15 @@
-import { useEffect } from 'react'
-import { setSeoMeta } from '../lib/seo'
-import HomeFeature from '../features/home'
+import HomeFeature from '../features/home';
+import SEO from '../components/SEO';
 
 export default function HomePage() {
-  useEffect(() => {
-    setSeoMeta({
-      title: 'Berita Sepak Bola Terkini',
-      description: '352.IDN - Portal berita sepak bola terpercaya. Berita terkini, skor pertandingan, dan analisis mendalam.',
-    })
-  }, [])
-
-  return <HomeFeature />
+  return (
+    <>
+      <SEO 
+        title="Berita Sepak Bola Terkini" 
+        description="352.IDN - Portal berita sepak bola terpercaya. Berita terkini, skor pertandingan, dan analisis mendalam." 
+        slug="" 
+      />
+      <HomeFeature />
+    </>
+  );
 }

@@ -5,7 +5,7 @@ import { sanityClient } from './client'
 const builder = imageUrlBuilder(sanityClient)
 
 export function urlFor(source: SanityImageSource) {
-  return builder.image(source)
+  return builder.image(source).format('webp').quality(80)
 }
 
 export const IMAGE_WIDTHS = {

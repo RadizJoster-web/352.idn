@@ -1,17 +1,15 @@
-import { useEffect } from 'react';
-import { setSeoMeta } from '../lib/seo';
 import { IoIosMail, IoIosCall } from 'react-icons/io';
+import SEO from '../components/SEO';
 
 export default function ContactPage() {
-  useEffect(() => {
-    setSeoMeta({
-      title: 'Kontak & Kerja Sama',
-      description: 'Hubungi redaksi dan tim bisnis 352.IDN.',
-    });
-  }, []);
-
   return (
-    <div className="mx-auto max-w-[760px] px-4 py-12">
+    <>
+      <SEO 
+        title="Kontak & Kerja Sama" 
+        description="Hubungi redaksi dan tim bisnis 352.IDN." 
+        slug="kontak" 
+      />
+      <div className="mx-auto max-w-[760px] px-4 py-12">
       <h1 className="text-3xl font-semibold text-text mb-2 font-serif">Kontak Kami</h1>
       <p className="text-text-secondary mb-8">
         Hubungi kami melalui kanal resmi di bawah ini untuk pertanyaan umum,
@@ -51,5 +49,6 @@ export default function ContactPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

@@ -18,7 +18,6 @@ const truncateWords = (text: string, maxWords: number) => {
 };
 
 export default function ArticleHeader({ article }: ArticleHeaderProps) {
-  console.log(article);
   return (
     <header className="mb-6">
       <Breadcrumb

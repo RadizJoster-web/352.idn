@@ -6,8 +6,9 @@ import {
   fetchArticleBySlug,
   fetchRelatedArticles,
 } from '../../queries/articleQueries';
-import { setSeoMeta, setJsonLd } from '../../lib/seo';
 import { urlFor } from '../../services/sanity/image';
+import SEO from '../../components/SEO';
+import NewsArticleSchema from '../../components/NewsArticleSchema';
 import PageArticleSkeleton from '../../components/common/skeleton/pages/PageArticleSkeleton';
 import ErrorState from '../../components/common/ErrorState';
 import SanityImage from '../../components/media/SanityImage';
@@ -39,28 +40,6 @@ export default function ArticleFeature() {
             4,
           );
           if (!cancelled) setRelated(rel);
-          setSeoMeta({
-            title: data.seoTitle || data.title,
-            description: data.seoDescription || data.excerpt,
-            ogType: 'article',
-            ogImage: data.seoImage
-              ? urlFor(data.seoImage).width(1200).url()
-              : urlFor(data.mainImage).width(1200).url(),
-            publishedTime: data.publishedAt,
-            author: data.author.name,
-            section: data.category.title,
-            canonical: `${window.location.origin}/artikel/${data.slug}`,
-          });
-          setJsonLd({
-            '@context': 'https://schema.org',
-            '@type': 'NewsArticle',
-            headline: data.title,
-            image: urlFor(data.mainImage).width(1200).url(),
-            datePublished: data.publishedAt,
-            author: { '@type': 'Person', name: data.author.name },
-            publisher: { '@type': 'Organization', name: '352.IDN' },
-            mainEntityOfPage: `${window.location.origin}/artikel/${data.slug}`,
-          });
         }
       } catch (err) {
         if (!cancelled)
@@ -82,7 +61,29 @@ export default function ArticleFeature() {
   if (!article) return <ErrorState message="Artikel tidak ditemukan." />;
 
   return (
-    <article className="mx-auto max-w-[var(--container-max)] px-4 py-8">
+    <>
+      <SEO
+        title={article.seoTitle || article.title}
+        description={article.seoDescription || article.excerpt}
+        slug={`artikel/${article.slug}`}
+        ogType="article"
+        ogImage={
+          article.seoImage
+            ? urlFor(article.seoImage).width(1200).url()
+            : urlFor(article.mainImage).width(1200).url()
+        }
+        publishedAt={article.publishedAt}
+        author={article.author.name}
+        section={article.category.title}
+      />
+      <NewsArticleSchema
+        headline={article.title}
+        image={[urlFor(article.mainImage).width(1200).url()]}
+        datePublished={article.publishedAt}
+        author={{ name: article.author.name }}
+        url={typeof window !== 'undefined' ? `${window.location.origin}/artikel/${article.slug}` : `https://352.idn/artikel/${article.slug}`}
+      />
+      <article className="mx-auto max-w-[var(--container-max)] px-4 py-8">
       <div className="grid gap-10 lg:grid-cols-[1fr_300px] ">
         {/* Konten Kiri (Header, Gambar, Body) */}
         <div className="min-w-0 max-w-full lg:max-w-[760px] xl:max-w-[800px] mx-auto lg:mx-0">
@@ -112,5 +113,6 @@ export default function ArticleFeature() {
 
       <RelatedArticles articles={related} />
     </article>
+    </>
   );
 }
