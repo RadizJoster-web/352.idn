@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const Title = () => (
   <div className="h-8 w-1/3 rounded bg-zinc-200 dark:bg-zinc-800 mb-6" />
 );
