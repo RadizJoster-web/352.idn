@@ -1,5 +1,5 @@
-import type { ArticleDetail, ArticleListItem } from '../types/article'
-import { sanityFetch } from '../services/sanity/fetcher'
+import type { ArticleDetail, ArticleListItem } from '../types/article';
+import { sanityFetch } from '../services/sanity/fetcher';
 
 const ARTICLE_LIST_PROJECTION = `{
   _id,
@@ -11,7 +11,7 @@ const ARTICLE_LIST_PROJECTION = `{
   hot,
   "category": category->{ title, "slug": slug.current },
   "author": author->{ name }
-}`
+}`;
 
 const ARTICLE_DETAIL_PROJECTION = `{
   _id,
@@ -27,77 +27,92 @@ const ARTICLE_DETAIL_PROJECTION = `{
   seoImage,
   "category": category->{ title, "slug": slug.current },
   "author": author->{ name, "slug": slug.current, avatar, bio, socialLinks }
-}`
+}`;
+
+export function fetchArticlesByAuthor(authorSlug: string, start = 0, end = 10) {
+  return sanityFetch<ArticleListItem[]>(
+    `*[_type == "article" && defined(slug.current) && author->slug.current == $authorSlug] | order(publishedAt desc)[$start...$end] ${ARTICLE_LIST_PROJECTION}`,
+    { authorSlug, start, end },
+  );
+}
 
 export function fetchHeroArticle() {
   return sanityFetch<ArticleListItem | null>(
-    `*[_type == "article" && featured == true && defined(slug.current)] | order(publishedAt desc)[0] ${ARTICLE_LIST_PROJECTION}`
-  )
+    `*[_type == "article" && featured == true && defined(slug.current)] | order(publishedAt desc)[0] ${ARTICLE_LIST_PROJECTION}`,
+  );
 }
 
 export function fetchHotArticles(limit = 4) {
   return sanityFetch<ArticleListItem[]>(
-    `*[_type == "article" && hot == true && defined(slug.current)] | order(publishedAt desc)[0...${limit}] ${ARTICLE_LIST_PROJECTION}`
-  )
+    `*[_type == "article" && hot == true && defined(slug.current)] | order(publishedAt desc)[0...${limit}] ${ARTICLE_LIST_PROJECTION}`,
+  );
 }
 
 export function fetchTopStories(limit = 4) {
   return sanityFetch<ArticleListItem[]>(
-    `*[_type == "article" && defined(slug.current) && featured != true && hot != true] | order(publishedAt desc)[0...${limit}] ${ARTICLE_LIST_PROJECTION}`
-  )
+    `*[_type == "article" && defined(slug.current) && featured != true && hot != true] | order(publishedAt desc)[0...${limit}] ${ARTICLE_LIST_PROJECTION}`,
+  );
 }
 
 export function fetchTimnasArticles(limit = 4) {
   return sanityFetch<ArticleListItem[]>(
-    `*[_type == "article" && defined(slug.current) && category->slug.current == "timnas-indonesia"] | order(publishedAt desc)[0...${limit}] ${ARTICLE_LIST_PROJECTION}`
-  )
+    `*[_type == "article" && defined(slug.current) && category->slug.current == "timnas-indonesia"] | order(publishedAt desc)[0...${limit}] ${ARTICLE_LIST_PROJECTION}`,
+  );
 }
 
 export function fetchLatestArticles(start = 0, end = 10) {
   return sanityFetch<ArticleListItem[]>(
     `*[_type == "article" && defined(slug.current)] | order(publishedAt desc)[$start...$end] ${ARTICLE_LIST_PROJECTION}`,
-    { start, end }
-  )
+    { start, end },
+  );
 }
 
 export function fetchArticleBySlug(slug: string) {
   return sanityFetch<ArticleDetail | null>(
     `*[_type == "article" && slug.current == $slug][0] ${ARTICLE_DETAIL_PROJECTION}`,
-    { slug }
-  )
+    { slug },
+  );
 }
 
-export function fetchRelatedArticles(categorySlug: string, excludeId: string, limit = 4) {
+export function fetchRelatedArticles(
+  categorySlug: string,
+  excludeId: string,
+  limit = 4,
+) {
   return sanityFetch<ArticleListItem[]>(
     `*[_type == "article" && category->slug.current == $categorySlug && _id != $excludeId && defined(slug.current)] | order(publishedAt desc)[0...${limit}] ${ARTICLE_LIST_PROJECTION}`,
-    { categorySlug, excludeId }
-  )
+    { categorySlug, excludeId },
+  );
 }
 
 export function fetchSearchArticles(query: string, start = 0, end = 10) {
   return sanityFetch<ArticleListItem[]>(
     `*[_type == "article" && defined(slug.current) && (title match $query || excerpt match $query)] | order(publishedAt desc)[$start...$end] ${ARTICLE_LIST_PROJECTION}`,
-    { query: `${query}*`, start, end }
-  )
+    { query: `${query}*`, start, end },
+  );
 }
 
 export function fetchSearchCount(query: string) {
   return sanityFetch<number>(
     `count(*[_type == "article" && defined(slug.current) && (title match $query || excerpt match $query)])`,
-    { query: `${query}*` }
-  )
+    { query: `${query}*` },
+  );
 }
 
-export function fetchCategoryArticles(categorySlug: string, start = 0, end = 10) {
+export function fetchCategoryArticles(
+  categorySlug: string,
+  start = 0,
+  end = 10,
+) {
   return sanityFetch<ArticleListItem[]>(
     `*[_type == "article" && defined(slug.current) && category->slug.current == $categorySlug] | order(publishedAt desc)[$start...$end] ${ARTICLE_LIST_PROJECTION}`,
-    { categorySlug, start, end }
-  )
+    { categorySlug, start, end },
+  );
 }
 
 export function fetchCategoryArticleCount(categorySlug: string) {
   return sanityFetch<number>(
     `count(*[_type == "article" && defined(slug.current) && category->slug.current == $categorySlug])`,
-    { categorySlug }
-  )
+    { categorySlug },
+  );
 }

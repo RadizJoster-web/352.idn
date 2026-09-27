@@ -13,6 +13,7 @@ import PrivacyPage from '../pages/PrivacyPage';
 import TermsPage from '../pages/TermsPage';
 import DisclaimerPage from '../pages/DisclaimerPage';
 import CyberGuidelinePage from '../pages/CyberGuidelinePage';
+import AuthorProfilePage from '../pages/AuthorProfilePage';
 import NotFoundPage from '../pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -32,6 +33,7 @@ export const router = createBrowserRouter([
       { path: 'terms-of-service', element: <TermsPage /> },
       { path: 'disclaimer', element: <DisclaimerPage /> },
       { path: 'pedoman-media-siber', element: <CyberGuidelinePage /> },
+      { path: 'penulis/:slug', element: <AuthorProfilePage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

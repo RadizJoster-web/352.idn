@@ -7,6 +7,7 @@ import {
   FaExternalLinkAlt,
 } from 'react-icons/fa';
 import { FaSquareXTwitter } from 'react-icons/fa6';
+import { Link } from 'react-router-dom';
 
 import type { ArticleDetail } from '../../types/article';
 import Breadcrumb from '../../components/common/Breadcrumb';
@@ -73,9 +74,12 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
           )}
 
           <div className="flex flex-col">
-            <span className="font-semibold text-text">
+            <Link
+              to={`/penulis/${article.author.slug}`}
+              className="font-semibold text-text hover:underline"
+            >
               {article.author.name}
-            </span>
+            </Link>
             <time
               dateTime={article.publishedAt}
               className="text-xs text-text-muted"
