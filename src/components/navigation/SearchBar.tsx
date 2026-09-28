@@ -4,12 +4,14 @@ import { FaSearch } from 'react-icons/fa';
 import { IoCloseSharp } from 'react-icons/io5';
 
 type SearchBarProps = {
+  onSubmit?: () => void;
   defaultValue?: string;
   className?: string;
 };
 
 export default function SearchBar({
   defaultValue = '',
+  onSubmit,
   className = '',
 }: SearchBarProps) {
   const [query, setQuery] = useState(defaultValue);
@@ -18,7 +20,10 @@ export default function SearchBar({
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     const trimmed = query.trim();
-    if (trimmed) navigate(`/search?q=${encodeURIComponent(trimmed)}`);
+    if (trimmed) {
+      navigate(`/search?q=${encodeURIComponent(trimmed)}`);
+      if (onSubmit) onSubmit();
+    }
   }
 
   return (

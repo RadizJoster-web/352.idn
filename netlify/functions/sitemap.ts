@@ -8,7 +8,7 @@ const sanity = createClient({
   useCdn: false,
 });
 
-const SITE_URL = process.env.URL || 'https://352.idn';
+const SITE_URL = process.env.URL || 'https://352idn';
 
 export const handler: Handler = async (event, context) => {
   try {

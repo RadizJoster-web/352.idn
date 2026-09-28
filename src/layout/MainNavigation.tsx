@@ -57,11 +57,11 @@ export function MainNavigation({
       {/* Mobile */}
       {mobileOpen && (
         <nav
-          className="border-t border-border bg-background md:hidden"
+          className="absolute top-15 left-0 w-full h-screen border-t border-border bg-background md:hidden"
           aria-label="Mobile navigation"
         >
           <div className="px-4 py-3">
-            <SearchBar className="mb-3" />
+            <SearchBar onSubmit={onClose} className="mb-3" />
             {navItems.map((item) => (
               <NavLink
                 key={item.href}
