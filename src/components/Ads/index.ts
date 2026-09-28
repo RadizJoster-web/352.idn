@@ -1,31 +1,18 @@
 /**
  * Ads Components
- * 
- * Kumpulan komponen iklan Google Ads dengan berbagai ukuran standar.
- * Setiap komponen berfungsi sebagai placeholder yang siap diisi
- * dengan kode Google AdSense kapanpun.
- * 
- * Cara penggunaan:
- * 1. Import komponen yang diinginkan
- * 2. Tanpa slot: akan menampilkan placeholder canvas
- * 3. Dengan slot: akan menampilkan container untuk kode AdSense
- * 
- * Contoh:
+ *
+ * Komponen iklan Google AdSense untuk portal 352.IDN.
+ *
+ * Penggunaan:
  * ```tsx
- * // Placeholder (development)
- * <AdMediumRectangle />
- * 
- * // Dengan Google AdSense slot
- * <AdMediumRectangle slot="1234567890" />
+ * import GoogleAd from '../components/Ads/GoogleAd';
+ *
+ * <GoogleAd type="square" />    // Sidebar atas
+ * <GoogleAd type="vertikal" />  // Sidebar bawah
+ * <GoogleAd type="list" />      // Disisipkan di article list
+ * <GoogleAd type="article" />   // In-article (auto placement Google)
  * ```
  */
 
-export { default as AdBanner } from './AdBanner';
-export type { AdSize } from './AdBanner';
-export { default as AdMediumRectangle } from './AdMediumRectangle';
-export { default as AdLargeRectangle } from './AdLargeRectangle';
-export { default as AdHalfPage } from './AdHalfPage';
-export { default as AdLeaderboard } from './AdLeaderboard';
-export { default as AdSkyscraper } from './AdSkyscraper';
-export { default as AdMobileBanner } from './AdMobileBanner';
-export { default as AdResponsive } from './AdResponsive';
+export { default as GoogleAd } from './GoogleAd';
+export type { GoogleAdType } from './GoogleAd';

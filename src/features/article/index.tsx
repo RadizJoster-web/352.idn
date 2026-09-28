@@ -17,6 +17,7 @@ import ArticleBody from './ArticleBody';
 import ArticleSidebar from './ArticleSidebar';
 import RelatedArticles from '../../components/article/RelatedArticles';
 import { Sidebar } from '../../components/Sidebar';
+import GoogleAd from '../../components/Ads/GoogleAd';
 
 export default function ArticleFeature() {
   const { slug = '' } = useParams<{ slug: string }>();
@@ -100,6 +101,9 @@ export default function ArticleFeature() {
           </div>
 
           <ArticleBody content={article.content} />
+
+          {/* Ads Display Article — auto placement oleh Google */}
+          <GoogleAd type="article" className="my-8" />
         </div>
 
         {/* Sidebar Kanan — menggunakan Sidebar reusable */}

@@ -1,7 +1,7 @@
 import { useTimnasArticles } from '../../hooks/useTimnasArticles';
 import SectionHeader from '../common/SectionHeader';
 import CompactArticleCard from '../article/CompactArticleCard';
-import { AdMediumRectangle } from '../Ads';
+import GoogleAd from '../Ads/GoogleAd';
 
 /**
  * Sidebar — Komponen reusable yang muncul di berbagai halaman.
@@ -9,28 +9,17 @@ import { AdMediumRectangle } from '../Ads';
  * Sifat:
  * - Layout vertikal
  * - Sticky mengikuti scroll window
- * - Jika konten sidebar lebih panjang dari viewport,
- *   sidebar akan "terlambat" (menggunakan `sticky` + `top-24`)
- *   sehingga user bisa scroll habis konten sidebar dulu
- *   sebelum sidebar mulai tertinggal.
  *
  * Isi:
- * 1. Artikel Timnas Indonesia (sama seperti di beranda)
- * 2. Placeholder iklan Google Ads
+ * 1. Ads Display Square (atas section Timnas)
+ * 2. Artikel Timnas Indonesia
+ * 3. Ads Display Vertikal (bawah section Timnas)
  *
  * Penggunaan:
  * ```tsx
  * <aside className="hidden lg:block">
  *   <Sidebar />
  * </aside>
- * ```
- *
- * Atau bisa juga diberikan konten tambahan dari halaman tertentu
- * yang tampil di atas konten default sidebar:
- * ```tsx
- * <Sidebar>
- *   <ArticleSidebar related={related} />
- * </Sidebar>
  * ```
  */
 
@@ -66,10 +55,10 @@ export default function Sidebar({
       {/* Konten khusus halaman (e.g., berita terkait) */}
       {children}
 
-      {/* Iklan atas (Medium Rectangle 300x250) */}
+      {/* Ads Display Square — di atas section Timnas */}
       {showAds && (
         <div className="flex justify-center">
-          <AdMediumRectangle />
+          <GoogleAd type="square" />
         </div>
       )}
 
@@ -92,10 +81,10 @@ export default function Sidebar({
         </section>
       )}
 
-      {/* Iklan bawah (Medium Rectangle 300x250) */}
+      {/* Ads Display Vertikal — di bawah section Timnas */}
       {showAds && (
         <div className="flex justify-center">
-          <AdMediumRectangle />
+          <GoogleAd type="vertikal" />
         </div>
       )}
     </div>

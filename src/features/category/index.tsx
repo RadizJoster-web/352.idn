@@ -8,6 +8,7 @@ import EmptyState from '../../components/common/EmptyState';
 import CategoryHeader from './CategoryHeader';
 import ArticleListItemComponent from '../../components/article/ArticleListItem';
 import { Sidebar } from '../../components/Sidebar';
+import GoogleAd from '../../components/Ads/GoogleAd';
 
 export default function CategoryFeature() {
   const { slug = '' } = useParams<{ slug: string }>();
@@ -38,18 +39,21 @@ export default function CategoryFeature() {
           {articles.length > 0 ? (
             <div className="divide-y divide-border">
               {articles.map((article, index) => {
-                if (index === articles.length - 2) {
-                  return (
-                    <div ref={lastElementRef} key={article._id}>
+                const isAdPosition = index === 4;
+                const isSecondToLast = index === articles.length - 2;
+
+                return (
+                  <div key={article._id}>
+                    {/* Ads Display List — di index ke-4 */}
+                    {isAdPosition && (
+                      <div className="py-4">
+                        <GoogleAd type="list" />
+                      </div>
+                    )}
+                    <div ref={isSecondToLast ? lastElementRef : null}>
                       <ArticleListItemComponent article={article} />
                     </div>
-                  );
-                }
-                return (
-                  <ArticleListItemComponent
-                    key={article._id}
-                    article={article}
-                  />
+                  </div>
                 );
               })}
 

@@ -3,6 +3,7 @@ import PageSimpleSkeleton from '../../components/common/skeleton/pages/PageSimpl
 import EmptyState from '../../components/common/EmptyState';
 import ArticleListItemComponent from '../../components/article/ArticleListItem';
 import { Sidebar } from '../../components/Sidebar';
+import GoogleAd from '../../components/Ads/GoogleAd';
 
 export default function LatestFeature() {
   const { articles, loading, lastElementRef } = useInfiniteArticles(10);
@@ -25,15 +26,21 @@ export default function LatestFeature() {
         <div className="min-w-0 max-w-full lg:max-w-[760px] xl:max-w-[800px] mx-auto lg:mx-0">
           <div className="divide-y divide-border">
             {articles.map((article, index) => {
-              if (index === articles.length - 2) {
-                return (
-                  <div ref={lastElementRef} key={article._id}>
+              const isAdPosition = index === 4;
+              const isSecondToLast = index === articles.length - 2;
+
+              return (
+                <div key={article._id}>
+                  {/* Ads Display List — di index ke-4 */}
+                  {isAdPosition && (
+                    <div className="py-4">
+                      <GoogleAd type="list" />
+                    </div>
+                  )}
+                  <div ref={isSecondToLast ? lastElementRef : null}>
                     <ArticleListItemComponent article={article} />
                   </div>
-                );
-              }
-              return (
-                <ArticleListItemComponent key={article._id} article={article} />
+                </div>
               );
             })}
 
