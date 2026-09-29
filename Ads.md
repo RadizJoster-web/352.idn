@@ -1,10 +1,6 @@
 Google Ads Configuration
 
 1. Ads Display Square
-   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5018559112243650"
-        crossorigin="anonymous"></script>
-   <!-- Ads Display Square -->
-
    <ins class="adsbygoogle"
         style="display:block"
         data-ad-client="ca-pub-5018559112243650"
@@ -16,10 +12,6 @@ Google Ads Configuration
    </script>
 
 2. Ads Display Vertikal
-   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5018559112243650"
-        crossorigin="anonymous"></script>
-   <!-- Ads Display Vertikal -->
-
    <ins class="adsbygoogle"
         style="display:block"
         data-ad-client="ca-pub-5018559112243650"
@@ -31,9 +23,6 @@ Google Ads Configuration
    </script>
 
 3. Ads Display List
-   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5018559112243650"
-        crossorigin="anonymous"></script>
-
    <ins class="adsbygoogle"
         style="display:block"
         data-ad-format="fluid"
@@ -45,8 +34,6 @@ Google Ads Configuration
    </script>
 
 4. Ads Display Article
-   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5018559112243650"
-        crossorigin="anonymous"></script>
    <ins class="adsbygoogle"
         style="display:block; text-align:center;"
         data-ad-layout="in-article"

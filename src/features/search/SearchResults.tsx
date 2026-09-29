@@ -1,10 +1,10 @@
-import type { ArticleListItem } from '../../types/article'
-import ArticleListItemComponent from '../../components/article/ArticleListItem'
-import GoogleAd from '../../components/Ads/GoogleAd'
+import type { ArticleListItem } from '../../types/article';
+import ArticleListItemComponent from '../../components/article/ArticleListItem';
+import { AdUnit } from '../../components/AdsUnit';
 
 type SearchResultsProps = {
-  articles: ArticleListItem[]
-}
+  articles: ArticleListItem[];
+};
 
 export default function SearchResults({ articles }: SearchResultsProps) {
   return (
@@ -14,12 +14,16 @@ export default function SearchResults({ articles }: SearchResultsProps) {
           {/* Ads Display List — di index ke-4 */}
           {index === 4 && (
             <div className="py-4">
-              <GoogleAd type="list" />
+              <AdUnit
+                adSlot="6840264105"
+                adFormat="fluid"
+                adLayoutKey="-ez+5q+5e-d4+4m"
+              />
             </div>
           )}
           <ArticleListItemComponent article={article} />
         </div>
       ))}
     </div>
-  )
+  );
 }

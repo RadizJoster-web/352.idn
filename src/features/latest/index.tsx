@@ -3,7 +3,7 @@ import PageSimpleSkeleton from '../../components/common/skeleton/pages/PageSimpl
 import EmptyState from '../../components/common/EmptyState';
 import ArticleListItemComponent from '../../components/article/ArticleListItem';
 import { Sidebar } from '../../components/Sidebar';
-import GoogleAd from '../../components/Ads/GoogleAd';
+import { AdUnit } from '../../components/AdsUnit';
 
 export default function LatestFeature() {
   const { articles, loading, lastElementRef } = useInfiniteArticles(10);
@@ -34,7 +34,11 @@ export default function LatestFeature() {
                   {/* Ads Display List — di index ke-4 */}
                   {isAdPosition && (
                     <div className="py-4">
-                      <GoogleAd type="list" />
+                      <AdUnit
+                        adSlot="6840264105"
+                        adFormat="fluid"
+                        adLayoutKey="-ez+5q+5e-d4+4m"
+                      />
                     </div>
                   )}
                   <div ref={isSecondToLast ? lastElementRef : null}>

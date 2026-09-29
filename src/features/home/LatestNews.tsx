@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import ArticleListItemComponent from '../../components/article/ArticleListItem';
 import { useInfiniteArticles } from '../../hooks/useInfiniteArticles';
-import GoogleAd from '../../components/Ads/GoogleAd';
+import { AdUnit } from '../../components/AdsUnit';
 
 export default function LatestNews() {
   const { articles, loading, lastElementRef } = useInfiniteArticles(10);
@@ -32,7 +32,11 @@ export default function LatestNews() {
               {/* Ads Display List — di index ke-4 */}
               {isAdPosition && (
                 <div className="py-4">
-                  <GoogleAd type="list" />
+                  <AdUnit
+                    adSlot="6840264105"
+                    adFormat="fluid"
+                    adLayoutKey="-ez+5q+5e-d4+4m"
+                  />
                 </div>
               )}
               <div ref={isSecondToLast ? lastElementRef : null}>

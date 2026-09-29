@@ -17,7 +17,7 @@ import ArticleBody from './ArticleBody';
 import ArticleSidebar from './ArticleSidebar';
 import RelatedArticles from '../../components/article/RelatedArticles';
 import { Sidebar } from '../../components/Sidebar';
-import GoogleAd from '../../components/Ads/GoogleAd';
+import { AdUnit } from '../../components/AdsUnit';
 
 export default function ArticleFeature() {
   const { slug = '' } = useParams<{ slug: string }>();
@@ -82,41 +82,50 @@ export default function ArticleFeature() {
         image={[urlFor(article.mainImage).width(1200).url()]}
         datePublished={article.publishedAt}
         author={{ name: article.author.name }}
-        url={typeof window !== 'undefined' ? `${window.location.origin}/artikel/${article.slug}` : `https://352.idn/artikel/${article.slug}`}
+        url={
+          typeof window !== 'undefined'
+            ? `${window.location.origin}/artikel/${article.slug}`
+            : `https://352.idn/artikel/${article.slug}`
+        }
       />
       <article className="mx-auto max-w-[var(--container-max)] px-4 py-8">
-      <div className="grid gap-10 lg:grid-cols-[1fr_300px] ">
-        {/* Konten Kiri (Header, Gambar, Body) */}
-        <div className="min-w-0 max-w-full lg:max-w-[760px] xl:max-w-[800px] mx-auto lg:mx-0">
-          <ArticleHeader article={article} />
+        <div className="grid gap-10 lg:grid-cols-[1fr_300px] ">
+          {/* Konten Kiri (Header, Gambar, Body) */}
+          <div className="min-w-0 max-w-full lg:max-w-[760px] xl:max-w-[800px] mx-auto lg:mx-0">
+            <ArticleHeader article={article} />
 
-          <div className="relative mb-8 overflow-hidden rounded-lg">
-            <SanityImage
-              source={article.mainImage}
-              alt={article.title}
-              preset="featured"
-              priority
-              className="w-full object-cover"
+            <div className="relative mb-8 overflow-hidden rounded-lg">
+              <SanityImage
+                source={article.mainImage}
+                alt={article.title}
+                preset="featured"
+                priority
+                className="w-full object-cover"
+              />
+            </div>
+
+            <ArticleBody content={article.content} />
+
+            {/* Ads Display Article — auto placement oleh Google */}
+            <AdUnit
+              adSlot="8209186098"
+              adFormat="fluid"
+              adLayout="in-article"
+              style={{ display: 'block', textAlign: 'center' }}
             />
           </div>
 
-          <ArticleBody content={article.content} />
-
-          {/* Ads Display Article — auto placement oleh Google */}
-          <GoogleAd type="article" className="my-8" />
+          {/* Sidebar Kanan — menggunakan Sidebar reusable */}
+          <div className="hidden lg:block">
+            <Sidebar>
+              {/* Berita terkait sebagai konten khusus halaman artikel */}
+              <ArticleSidebar related={related} />
+            </Sidebar>
+          </div>
         </div>
 
-        {/* Sidebar Kanan — menggunakan Sidebar reusable */}
-        <div className="hidden lg:block">
-          <Sidebar>
-            {/* Berita terkait sebagai konten khusus halaman artikel */}
-            <ArticleSidebar related={related} />
-          </Sidebar>
-        </div>
-      </div>
-
-      <RelatedArticles articles={related} />
-    </article>
+        <RelatedArticles articles={related} />
+      </article>
     </>
   );
 }

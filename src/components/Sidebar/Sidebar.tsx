@@ -1,7 +1,7 @@
 import { useTimnasArticles } from '../../hooks/useTimnasArticles';
 import SectionHeader from '../common/SectionHeader';
 import CompactArticleCard from '../article/CompactArticleCard';
-import GoogleAd from '../Ads/GoogleAd';
+import { AdUnit } from '../AdsUnit';
 
 /**
  * Sidebar — Komponen reusable yang muncul di berbagai halaman.
@@ -58,7 +58,7 @@ export default function Sidebar({
       {/* Ads Display Square — di atas section Timnas */}
       {showAds && (
         <div className="flex justify-center">
-          <GoogleAd type="square" />
+          <AdUnit adSlot="1898180187" adFormat="auto" />
         </div>
       )}
 
@@ -84,7 +84,7 @@ export default function Sidebar({
       {/* Ads Display Vertikal — di bawah section Timnas */}
       {showAds && (
         <div className="flex justify-center">
-          <GoogleAd type="vertikal" />
+          <AdUnit adSlot="4803545124" adFormat="auto" />
         </div>
       )}
     </div>
