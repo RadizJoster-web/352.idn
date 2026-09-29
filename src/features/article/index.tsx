@@ -61,6 +61,9 @@ export default function ArticleFeature() {
   if (error) return <ErrorState message="Gagal memuat artikel." />;
   if (!article) return <ErrorState message="Artikel tidak ditemukan." />;
 
+  const mainImageAlt =
+    (article.mainImage as { alt?: string } | undefined)?.alt || article.title;
+
   return (
     <>
       <SEO
@@ -99,9 +102,13 @@ export default function ArticleFeature() {
                 source={article.mainImage}
                 alt={article.title}
                 preset="featured"
-                priority
+                priority={true}
                 className="w-full object-cover"
               />
+
+              <div className="p-4 bg-primary-soft">
+                <p className="text-xs text-text-muted italic">{mainImageAlt}</p>
+              </div>
             </div>
 
             <ArticleBody content={article.content} />

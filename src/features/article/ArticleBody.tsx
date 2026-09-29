@@ -1,4 +1,5 @@
 import { PortableText } from '@portabletext/react';
+import { urlFor } from '../../services/sanity/image';
 
 type ArticleBodyProps = {
   content: unknown[];
@@ -10,6 +11,7 @@ export default function ArticleBody({ content }: ArticleBodyProps) {
       <PortableText
         value={content as never}
         components={{
+          // Menangani elemen block bawaan (heading, paragraf, dll)
           block: {
             h2: ({ children }) => (
               <h2 className="mt-10 mb-4 text-2xl font-semibold text-text">
@@ -29,6 +31,31 @@ export default function ArticleBody({ content }: ArticleBodyProps) {
                 {children}
               </blockquote>
             ),
+          },
+          // Menangani custom object seperti 'image'
+          types: {
+            image: ({ value }) => {
+              if (!value?.asset?._ref) return null;
+
+              return (
+                <figure className="flex flex-col items-center">
+                  <img
+                    src={urlFor(value).url()}
+                    alt={value.alt || 'Gambar artikel'}
+                    className="w-full h-auto rounded-t-lg"
+                    loading="lazy"
+                  />
+                  {/* Opsional: Menampilkan alt text sebagai caption di bawah gambar */}
+                  {value.alt && (
+                    <div className="p-4 bg-primary-soft w-full rounded-b-lg">
+                      <figcaption className="text-xs text-text-muted italic">
+                        {value.alt}
+                      </figcaption>
+                    </div>
+                  )}
+                </figure>
+              );
+            },
           },
           marks: {
             link: ({ children, value }) => (

@@ -61,9 +61,27 @@ export default defineType({
       name: 'content',
       title: 'Content',
       type: 'array',
-      of: [{type: 'block'}, {type: 'image'}],
       description: 'Konten utama artikel menggunakan Portable Text',
       validation: (Rule) => Rule.required(),
+      of: [
+        {type: 'block'},
+        {
+          type: 'image',
+          options: {hotspot: true}, // Tambahan opsi hotspot opsional agar gambar di konten juga bisa di-crop
+          fields: [
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Alternative Text',
+              description: 'Deskripsi gambar ini untuk keperluan SEO dan aksesibilitas pembaca',
+              options: {
+                isHighlighted: true, // Menampilkan input ini langsung di modal gambar agar editor tidak perlu menekan tombol edit tambahan
+              },
+              validation: (Rule) => Rule.required().error('Alt text wajib diisi untuk SEO'),
+            },
+          ],
+        },
+      ],
     }),
     defineField({
       name: 'publishedAt',
@@ -72,26 +90,19 @@ export default defineType({
       description: 'Waktu publikasi',
       validation: (Rule) => Rule.required(),
     }),
-
     defineField({
       name: 'featured',
       title: 'Featured',
       type: 'boolean',
-      description: 'Menentukan apakah artikel dapat dipakai sebagai hero',
-      initialValue: false,
-    }),
-    defineField({
-      name: 'trending',
-      title: 'Trending',
-      type: 'boolean',
-      description: 'Menandai artikel untuk area trending',
+      description: 'Menentukan apakah artikel dapat dipakai sebagai headline',
       initialValue: false,
     }),
     defineField({
       name: 'hot',
       title: 'Hot Article (Support Headline)',
       type: 'boolean',
-      description: 'Menandai artikel ini sebagai berita hangat pendukung headline',
+      description:
+        'Menandai artikel ini sebagai berita hangat pendukung headline (4 artikel dibawah headline)',
       initialValue: false,
     }),
     // SEO Fields
