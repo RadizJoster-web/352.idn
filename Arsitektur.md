@@ -18,8 +18,6 @@ Sanity / External Football API
 
 Sanity menjadi source of truth untuk berita editorial.
 
-Data skor atau jadwal pertandingan dapat berasal dari football API eksternal. Integrasi ini opsional dan harus berada di server-side proxy jika API membutuhkan secret.
-
 ---
 
 ## 2. Teknologi
